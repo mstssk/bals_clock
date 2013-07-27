@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>バルス時計</title>
+<script type="text/javascript">
+<!--
+var balstime = new Date("2011/12/9 23:21:13");
+function count(){
+	var remain = (balstime - new Date()) / 1000;
+	if(remain < 0){
+		document.body.innerHTML = "<p>今年のバルスは終了しました</p>";
+		clearInterval(hoge);
+	}else{
+		var h = remain / 3600 | 0;
+		var tmp = remain % 3600;
+		var m = tmp / 60 | 0;
+		var s = tmp % 60 | 0;
+		document.getElementById("clock").innerHTML = h + "時間" + f(m) + "分" + f(s) + "秒";
+	}
+}
+function f(n) {
+    return n < 10 ? '0' + n : n;
+}
+// -->
+</script>
+</head>
+<body onload="hoge = setInterval('count()',1000)">
+<p>バルスまであと<b><span id="clock"></span></b>です。</p>
+<p>2009年11月20日の放送時刻（23:21:13）を目安にしています。</p>
+</body>
+</html>

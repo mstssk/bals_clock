@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>バルス時計</title>
+<style>
+<!--
+body{
+	background: #0b73d7;
+}
+
+#bg img{
+	min-height: 100%;
+	min-width: 100%;
+	position: fixed;
+}
+
+#bg img.cloud {
+	-webkit-transform: scale(0.26) translate(0%, -90%);
+}
+
+#bg img:nth-child(2) {
+	-webkit-transform: scale(0.26) translate(-20%, -90%);
+	-webkit-animation: slide-first 480s 1 linear
+						, slide-loop 960s 140s infinite linear;
+}
+
+#bg img:nth-child(3) {
+	-webkit-transform: scale(0.26) translate(0%, 60%);
+	-webkit-animation: slide-first 400s 1 linear
+					, slide-loop 800s 140s infinite linear;
+}
+
+#bg img:nth-child(4) {
+	-webkit-transform: scale(0.26) translate(-170%, -20%);
+	-webkit-animation: slide-first 400s 1 linear
+					, slide-loop 800s 400s infinite linear;
+}
+
+#bg img:nth-child(5) {
+	-webkit-transform: scale(0.26) translate(-160%, 80%);
+	-webkit-animation: slide-first 480s 1 linear
+						, slide-loop 960s 480s infinite linear;
+}
+
+#bg {
+	min-height: 100%;
+	min-width: 800px;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+@media screen and (max-width: 800px){
+	#bg {
+	left: 50%;
+	margin-left: -400px; }
+}
+
+#container {
+	position: relative; 
+}
+
+#wall{
+	background:url(./img/wall.png) no-repeat;
+	height: 400px;
+	width: 480px;
+	position:absolute;
+	left:50%; top:50%; margin-left:-240px; margin-top:150px;
+
+	-webkit-animation: move 20s infinite linear;
+}
+#text{
+	background:url(./img/text_base.png) no-repeat;
+	height: 70px;
+	width: 260px;
+	margin: 120px 120px;
+	padding-top: 48px;
+}
+#hh{
+	margin-left: 40px;
+}
+#mm{
+	margin-left: 47px;
+}
+#ss{
+	margin-left: 23px;
+}
+
+/** Animations **/
+@-webkit-keyframes move{
+	50%{
+		-webkit-transform:translate(0px, 20px);
+	}
+	100%{
+		-webkit-transform:translate(0px, 0px);
+	}
+}
+@-webkit-keyframes slide-first{
+	from{
+		left: 0%;
+	}
+	to{
+		left: 115%;
+	}
+}
+@-webkit-keyframes slide-loop{
+	from{
+		left: -115%;
+	}
+	to{
+		left: 115%;
+	}
+}
+// -->
+</style>
+</head>
+<body>
+<div id="bg">
+	<img src="./img/bg.png"/>
+	<img class="cloud" src="./img/cloud1.png"/>
+	<img class="cloud" src="./img/cloud2.png"/>
+	<img class="cloud" src="./img/cloud3.png"/>
+	<img class="cloud" src="./img/cloud4.png"/>
+</div>
+<div id="container">
+<p>バルスまであと<b><span id="clock"></span></b>です。</p>
+<p>2009年11月20日の放送時刻（23:21:13）を目安にしています。</p>
+
+<div id="wall">
+	<div id="text">
+		<span id="hh">
+			<img id="h2">
+			<img id="h1">
+			<img id="h0">
+		</span>
+		<span id="mm">
+			<img id="m1">
+			<img id="m0">
+		</span>
+		<span id="ss">
+			<img id="s1">
+			<img id="s0">
+		</span>
+	</div>
+</div>
+
+<!-- for cache -->
+<div style="display:none">
+<img src="./img/num0.png"/>
+<img src="./img/num1.png"/>
+<img src="./img/num2.png"/>
+<img src="./img/num3.png"/>
+<img src="./img/num4.png"/>
+<img src="./img/num5.png"/>
+<img src="./img/num6.png"/>
+<img src="./img/num7.png"/>
+<img src="./img/num8.png"/>
+<img src="./img/num9.png"/>
+</div>
+
+</div>
+
+<script type="text/javascript">
+<!--
+(function(){
+
+var num = 	["./img/num0.png"
+			,"./img/num1.png"
+			,"./img/num2.png"
+			,"./img/num3.png"
+			,"./img/num4.png"
+			,"./img/num5.png"
+			,"./img/num6.png"
+			,"./img/num7.png"
+			,"./img/num8.png"
+			,"./img/num9.png"];
+var h2 = document.getElementById("h2");
+var h1 = document.getElementById("h1");
+var h0 = document.getElementById("h0");
+var m1 = document.getElementById("m1");
+var m0 = document.getElementById("m0");
+var s1 = document.getElementById("s1");
+var s0 = document.getElementById("s0");
+var balstime = new Date("2013/08/02 23:21:53");
+function count(){
+	var remain = (balstime - new Date()) / 1000;
+	if(remain < 0){
+		document.body.innerHTML = "<p>今年のバルスは終了しました</p>";
+		clearInterval(timeoutID);
+	}else{
+		var h = remain / 3600 | 0;
+		var tmp = remain % 3600;
+		var m = tmp / 60 | 0;
+		var s = tmp % 60 | 0;
+		document.getElementById("clock").innerHTML = h + "時間" + f(m) + "分" + f(s) + "秒";
+		h2.src = num[h / 100 % 100 | 0];
+		h1.src = num[h / 10 % 10| 0];
+		h0.src = num[h % 10];
+		m1.src = num[m / 10 | 0];
+		m0.src = num[m % 10];
+		s1.src = num[s / 10 | 0];
+		s0.src = num[s % 10];
+	}
+}
+function f(n) {
+    return n < 10 ? '0' + n : n;
+}
+
+var timeoutID = setInterval(count,1000);
+})();
+// -->
+</script>
+
+</body>
+</html>
