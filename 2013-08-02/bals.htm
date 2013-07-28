@@ -197,8 +197,6 @@ body{
 	<img class="cloud" src="./img/cloud4.png"/>
 </div>
 <div id="container">
-	<p>バルスまであと<b><span id="clock"></span></b>です。</p>
-	
 
 	<div id="wall">
 		<div id="text">
@@ -279,7 +277,6 @@ function count(){
 		var tmp = remain % 3600;
 		var m = tmp / 60 | 0;
 		var s = tmp % 60 | 0;
-		document.getElementById("clock").innerHTML = h + "時間" + f(m) + "分" + f(s) + "秒";
 		h2.src = num[h / 100 % 100 | 0];
 		h1.src = num[h / 10 % 10| 0];
 		h0.src = num[h % 10];
