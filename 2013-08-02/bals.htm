@@ -72,6 +72,11 @@ body{
 	position: relative;
 }
 
+#castle{
+	-webkit-transform: rotate(-5deg);
+	-webkit-animation: move 60s infinite;
+}
+
 #wall{
 	background:url(./img/wall.png) no-repeat;
 	width: 480px;
@@ -178,6 +183,10 @@ body{
 	<img class="cloud" src="./img/cloud4.png"/>
 </div>
 <div id="container">
+
+	<div>
+		<img id="castle" src="./img/castle.png">
+	</div>
 
 	<div id="wall">
 		<div id="text">
