@@ -60,6 +60,18 @@ body{
 	margin-left: -400px; }
 }
 
+#fg {
+	background: white;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+#fg.fadein{
+	-webkit-animation: fadein 3s 1, vanished 0s 3s infinite;
+}
+
 #container {
 	position: relative; 
 }
@@ -94,6 +106,42 @@ body{
 }
 
 /** Animations **/
+@-webkit-keyframes fadein{
+	from{
+		background: white;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	to{
+		background: transparent;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+}
+@-webkit-keyframes vanished{
+	from{
+		display: none;
+		width: 0%;
+		height: 0%;
+		position: static;
+		top: 0;
+		left: 0;
+	}
+	to{
+		display: none;
+		width: 0%;
+		height: 0%;
+		position: static;
+		top: 0;
+		left: 0;
+	}
+}
 @-webkit-keyframes move{
 	50%{
 		-webkit-transform:translate(0px, 20px);
@@ -130,28 +178,30 @@ body{
 	<img class="cloud" src="./img/cloud4.png"/>
 </div>
 <div id="container">
-<p>バルスまであと<b><span id="clock"></span></b>です。</p>
-<p>2009年11月20日の放送時刻（23:21:13）を目安にしています。</p>
+	<p>バルスまであと<b><span id="clock"></span></b>です。</p>
+	<p>2009年11月20日の放送時刻（23:21:13）を目安にしています。</p>
 
-<div id="wall">
-	<div id="text">
-		<span id="hh">
-			<img id="h2">
-			<img id="h1">
-			<img id="h0">
-		</span>
-		<span id="mm">
-			<img id="m1">
-			<img id="m0">
-		</span>
-		<span id="ss">
-			<img id="s1">
-			<img id="s0">
-		</span>
+	<div id="wall">
+		<div id="text">
+			<span id="hh">
+				<img id="h2">
+				<img id="h1">
+				<img id="h0">
+			</span>
+			<span id="mm">
+				<img id="m1">
+				<img id="m0">
+			</span>
+			<span id="ss">
+				<img id="s1">
+				<img id="s0">
+			</span>
+		</div>
 	</div>
-</div>
 
 </div>
+
+<div id="fg"></div>
 
 <!-- for cache -->
 <div style="display:none">
@@ -214,6 +264,9 @@ function f(n) {
 }
 
 var timeoutID = setInterval(count,1000);
+window.onload = function(){
+	document.getElementById("fg").className += "fadein";
+};
 })();
 // -->
 </script>
