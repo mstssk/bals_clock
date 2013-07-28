@@ -65,7 +65,7 @@ body{
 	left: 0;
 }
 #fg.fadein{
-	-webkit-animation: fadein 3s 1, vanished 86400s 3s infinite;
+	-webkit-animation: fadein 3s 1;
 }
 
 #container {
@@ -138,24 +138,6 @@ body{
 		width: 100%;
 		height: 100%;
 		position: fixed;
-		top: 0;
-		left: 0;
-	}
-}
-@-webkit-keyframes vanished{
-	from{
-		display: none;
-		width: 0%;
-		height: 0%;
-		position: static;
-		top: 0;
-		left: 0;
-	}
-	to{
-		display: none;
-		width: 0%;
-		height: 0%;
-		position: static;
 		top: 0;
 		left: 0;
 	}
@@ -291,7 +273,12 @@ function f(n) {
 
 var timeoutID = setInterval(count,1000);
 window.onload = function(){
-	document.getElementById("fg").className += "fadein";
+	var fg = document.getElementById("fg");
+	fg.className += "fadein";
+	setTimeout(function(){
+		// Delete fourground element after fade-in animation.
+		fg.parentNode.removeChild(fg);
+	}, 3000);
 };
 })();
 // -->
