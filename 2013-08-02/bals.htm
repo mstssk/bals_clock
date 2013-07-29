@@ -347,17 +347,17 @@ div.bg {
 	<div id="wall">
 		<div id="text">
 			<span id="hh">
-				<img id="h2">
-				<img id="h1">
-				<img id="h0">
+				<img id="h2" src="./img/num0.png">
+				<img id="h1" src="./img/num0.png">
+				<img id="h0" src="./img/num0.png">
 			</span>
 			<span id="mm">
-				<img id="m1">
-				<img id="m0">
+				<img id="m1" src="./img/num0.png">
+				<img id="m0" src="./img/num0.png">
 			</span>
 			<span id="ss">
-				<img id="s1">
-				<img id="s0">
+				<img id="s1" src="./img/num0.png">
+				<img id="s0" src="./img/num0.png">
 			</span>
 		</div>
 		<div id="text_finished" style="display:none"></div>
@@ -384,16 +384,16 @@ div.bg {
 
 <!-- for cache -->
 <div style="display:none">
-<img src="./img/num0.png"/>
-<img src="./img/num1.png"/>
-<img src="./img/num2.png"/>
-<img src="./img/num3.png"/>
-<img src="./img/num4.png"/>
-<img src="./img/num5.png"/>
-<img src="./img/num6.png"/>
-<img src="./img/num7.png"/>
-<img src="./img/num8.png"/>
-<img src="./img/num9.png"/>
+<img src="./img/num0.png">
+<img src="./img/num1.png">
+<img src="./img/num2.png">
+<img src="./img/num3.png">
+<img src="./img/num4.png">
+<img src="./img/num5.png">
+<img src="./img/num6.png">
+<img src="./img/num7.png">
+<img src="./img/num8.png">
+<img src="./img/num9.png">
 </div>
 
 <script type="text/javascript">
@@ -431,7 +431,14 @@ var balstime = new Date("2013/08/02 23:21:53");
 function count(){
 	var remain = (balstime - new Date()) / 1000;
 	if(remain < 0){
-		bals();
+		clearInterval(timeoutID);
+		if(getElemById("fg")){ // Delay 'bals' if foreground effect stil exists.
+			setTimeout(function(){
+				bals();
+			}, 3000);
+		}else{
+			bals();
+		}
 	}else{
 		var h = remain / 3600 | 0;
 		var tmp = remain % 3600;
