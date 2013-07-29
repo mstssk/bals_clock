@@ -8,39 +8,41 @@
 <!--
 body{
 	background: #0b73d7;
+	margin: 0px;
+	padding: 0px;
 }
 
-#bg img{
+div.bg img{
 	min-height: 100%;
 	min-width: 100%;
 	position: fixed;
 }
 
-#bg img.cloud {
+div.bg img.cloud {
 	-webkit-transform: scale(0.26) translate(0%, -90%);
 }
 
-#bg img:nth-child(2) {
+div.bg img:nth-child(2) {
 	-webkit-transform: scale(0.26) translate(-20%, -90%);
 	-webkit-animation: slide-first 480s 1 linear, slide-loop 960s 140s infinite linear;
 }
 
-#bg img:nth-child(3) {
+div.bg img:nth-child(3) {
 	-webkit-transform: scale(0.26) translate(0%, 20%);
 	-webkit-animation: slide-first 400s 1 linear, slide-loop 800s 140s infinite linear;
 }
 
-#bg img:nth-child(4) {
+div.bg img:nth-child(4) {
 	-webkit-transform: scale(0.26) translate(-170%, -20%);
 	-webkit-animation: slide-first 400s 1 linear, slide-loop 800s 400s infinite linear;
 }
 
-#bg img:nth-child(5) {
+div.bg img:nth-child(5) {
 	-webkit-transform: scale(0.26) translate(-160%, 100%);
 	-webkit-animation: slide-first 480s 1 linear, slide-loop 960s 480s infinite linear;
 }
 
-#bg {
+div.bg {
 	min-height: 100%;
 	min-width: 800px;
 	width: 100%;
@@ -51,9 +53,10 @@ body{
 }
 
 @media screen and (max-width: 800px){
-	#bg {
-	left: 50%;
-	margin-left: -400px; }
+	div.bg {
+		left: 50%;
+		margin-left: -400px;
+	}
 }
 
 #fg {
@@ -73,11 +76,13 @@ body{
 }
 
 #castle_container{
-	margin: 30px;
+	position: fixed;
+	top: 70px;
+	left: 100px;
 }
 
 #ornithopter{
-	margin-top: 40px;
+	margin-top: 100px;
 	position: fixed;
 	-webkit-animation: flying-ornithopter 60s 1, flying-up-down 5s infinite;
 }
@@ -89,10 +94,10 @@ body{
 }
 
 #particles img{
-	margin-top: 50px;
-	margin-left: 40px;
+	margin-top: 80px;
+	margin-left: 100px;
 	position: fixed;
-	-webkit-animation: particle-fall-down 60s infinite linear;
+	-webkit-animation: fall-down 60s infinite linear;
 }
 #particles img:nth-child(1){
 	left: 40px;
@@ -134,6 +139,9 @@ body{
 	-webkit-animation-delay: 36s;
 }
 
+#effect{
+	-webkit-animation: blink 0.2s infinite;
+}
 
 #wall{
 	background:url(./img/wall.png) no-repeat;
@@ -234,7 +242,7 @@ body{
 		left: 100%;
 	}
 	to{
-		left: 5%;
+		left: 140px;
 		-webkit-transform: scale(0.3);
 	}
 }
@@ -249,7 +257,7 @@ body{
 		top: -10px;
 	}
 }
-@-webkit-keyframes particle-fall-down{
+@-webkit-keyframes fall-down{
 	from{
 		top: 100px;
 	}
@@ -261,12 +269,20 @@ body{
 		-webkit-transform: rotate(90deg);
 	}
 }
+@-webkit-keyframes blink{
+	from{
+		opacity: 1;
+	}
+	to{
+		opacity: 0.7;
+	}
+}
 // -->
 </style>
 </head>
 <body>
-<div id="bg">
-	<img src="./img/bg.png"/>
+<div class="bg">
+	<img class="sky" src="./img/bg.png"/>
 	<img class="cloud" src="./img/cloud1.png"/>
 	<img class="cloud" src="./img/cloud2.png"/>
 	<img class="cloud" src="./img/cloud3.png"/>
@@ -307,6 +323,10 @@ body{
 				<img id="s0">
 			</span>
 		</div>
+	</div>
+
+	<div id="effect" class="bg" style="display:none">
+		<img src="./img/effect.png">
 	</div>
 
 	<div id="footer">
@@ -379,6 +399,12 @@ function count(){
 		s0.src = num[s % 10];
 	}
 }
+
+function bals(){
+	clearInterval(timeoutID);
+	document.getElementById("effect").style.display = null;
+}
+window.bals = bals;
 
 var timeoutID = setInterval(count,1000);
 window.onload = function(){
