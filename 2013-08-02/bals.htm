@@ -72,10 +72,68 @@ body{
 	position: relative;
 }
 
+#castle_container{
+	margin: 30px;
+}
+
+#ornithopter{
+	margin-top: 40px;
+	position: fixed;
+	-webkit-animation: flying-ornithopter 60s 1, flying-up-down 5s infinite;
+}
+
 #castle{
+	position: fixed;
 	-webkit-transform: rotate(-5deg);
 	-webkit-animation: move 60s infinite;
 }
+
+#particles img{
+	margin-top: 50px;
+	margin-left: 40px;
+	position: fixed;
+	-webkit-animation: particle-fall-down 60s infinite linear;
+}
+#particles img:nth-child(1){
+	left: 40px;
+}
+#particles img:nth-child(2){
+	left: 45px;
+	-webkit-animation-delay: 3s;
+}
+#particles img:nth-child(3){
+	left: 38px;
+	-webkit-animation-delay: 7s;
+}
+#particles img:nth-child(4){
+	left: 65px;
+	-webkit-animation-delay: 11s;
+}
+#particles img:nth-child(5){
+	left: 34px;
+	-webkit-animation-delay: 16s;
+}
+#particles img:nth-child(6){
+	left: 55px;
+	-webkit-animation-delay: 19s;
+}
+#particles img:nth-child(7){
+	left: 38px;
+	-webkit-animation-delay: 23s;
+}
+#particles img:nth-child(8){
+	left: 60px;
+	-webkit-animation-delay: 27s;
+}
+#particles img:nth-child(9){
+	left: 45px;
+	-webkit-animation-delay: 31s;
+}
+#particles img:nth-child(10){
+	left: 30px;
+	-webkit-animation-delay: 36s;
+}
+
 
 #wall{
 	background:url(./img/wall.png) no-repeat;
@@ -171,6 +229,38 @@ body{
 		left: 115%;
 	}
 }
+@-webkit-keyframes flying-ornithopter{
+	from{
+		left: 100%;
+	}
+	to{
+		left: 5%;
+		-webkit-transform: scale(0.3);
+	}
+}
+@-webkit-keyframes flying-up-down{
+	from{
+		top: -10px;
+	}
+	50%{
+		top: 10px;
+	}
+	to{
+		top: -10px;
+	}
+}
+@-webkit-keyframes particle-fall-down{
+	from{
+		top: 100px;
+	}
+	50%{
+		padding-left: 10px;
+	}
+	to{
+		top: 1000px;
+		-webkit-transform: rotate(90deg);
+	}
+}
 // -->
 </style>
 </head>
@@ -184,7 +274,20 @@ body{
 </div>
 <div id="container">
 
-	<div>
+	<div id="castle_container">
+		<img id="ornithopter" src="./img/ornithopter.png">
+		<div id="particles">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+			<img src="./img/particle.png">
+		</div>
 		<img id="castle" src="./img/castle.png">
 	</div>
 
@@ -276,18 +379,26 @@ function count(){
 		s0.src = num[s % 10];
 	}
 }
-function f(n) {
-    return n < 10 ? '0' + n : n;
-}
 
 var timeoutID = setInterval(count,1000);
 window.onload = function(){
+	// fade-in animation
 	var fg = document.getElementById("fg");
 	fg.className += "fadein";
 	setTimeout(function(){
 		// Delete fourground element after fade-in animation.
 		fg.parentNode.removeChild(fg);
 	}, 3000);
+
+	// ornithopter
+	var ornithopter = document.getElementById("ornithopter");
+	if((balstime.getTime() - Date.now()) < 60000){
+		ornithopter.parentNode.removeChild(ornithopter);
+	}else{
+		setTimeout(function(){
+			ornithopter.parentNode.removeChild(ornithopter);
+		}, 60000);
+	}
 };
 })();
 // -->
