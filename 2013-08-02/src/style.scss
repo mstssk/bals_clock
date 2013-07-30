@@ -125,6 +125,8 @@ div.bg {
 #family{
 	margin-top: 100px;
 	position: fixed;
+}
+#family.flying{
 	@include animation((flying-family 60s 1, flying-up-down 5s infinite linear));
 }
 

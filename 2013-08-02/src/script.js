@@ -68,6 +68,7 @@ function bals(){
 
 	var family = getElemById("family");
 	family.style.display = null;
+	family.className += "flying";
 
 	var castle = getElemById("castle");
 	castle.className += "falldown";
