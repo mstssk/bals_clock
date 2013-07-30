@@ -10,9 +10,11 @@ mkdir -p deploy/img
 echo "Compile 'css'."
 compass compile src/style.scss
 
-echo "Copy source files."
+echo "Compress 'js'."
+java -jar lib/closure-compiler/compiler.jar --js src/script.js --js_output_file deploy/script.js
+
+echo "Copy image and html files."
 cp src/img/* deploy/img/
-cp src/script.js deploy/script.js
 cp src/bals.htm deploy/bals.htm
 
 echo "Done!"
