@@ -1,3 +1,41 @@
+@import "compass/css3/";
+
+/** mixins **/
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-o-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-o-animation: #{$str};
+	-ms-animation: #{$str};
+	animation: #{$str};
+}
+
+@mixin animation-delay($str) {
+	-webkit-animation-delay: #{$str};
+	-moz-animation-delay: #{$str};
+	-o-animation-delay: #{$str};
+	-ms-animation-delay: #{$str};
+	animation-delay: #{$str};
+}
+
+
 body{
 	background: #0b73d7;
 	margin: 0px;
@@ -11,27 +49,32 @@ div.bg img{
 }
 
 div.bg img.cloud {
-	-webkit-transform: scale(0.26) translate(0%, -90%);
+	@include scale(0.26);
+	@include translate(0%, -90%);
 }
 
 div.bg img:nth-child(2) {
-	-webkit-transform: scale(0.26) translate(-20%, -90%);
-	-webkit-animation: slide-first 480s 1 linear, slide-loop 960s 140s infinite linear;
+	@include scale(0.26);
+	@include translate(-20%, -90%);
+	@include animation((slide-first 480s 1 linear, slide-loop 960s 140s infinite linear));
 }
 
 div.bg img:nth-child(3) {
-	-webkit-transform: scale(0.26) translate(0%, 20%);
-	-webkit-animation: slide-first 400s 1 linear, slide-loop 800s 140s infinite linear;
+	@include scale(0.26);
+	@include translate(0%, 20%);
+	@include animation((slide-first 400s 1 linear, slide-loop 800s 140s infinite linear));
 }
 
 div.bg img:nth-child(4) {
-	-webkit-transform: scale(0.26) translate(-170%, -20%);
-	-webkit-animation: slide-first 400s 1 linear, slide-loop 800s 400s infinite linear;
+	@include scale(0.26);
+	@include translate(-170%, -20%);
+	@include animation((slide-first 400s 1 linear, slide-loop 800s 400s infinite linear));
 }
 
 div.bg img:nth-child(5) {
-	-webkit-transform: scale(0.26) translate(-160%, 100%);
-	-webkit-animation: slide-first 480s 1 linear, slide-loop 960s 480s infinite linear;
+	@include scale(0.26);
+	@include translate(-160%, 100%);
+	@include animation((slide-first 480s 1 linear, slide-loop 960s 480s infinite linear));
 }
 
 div.bg {
@@ -60,7 +103,7 @@ div.bg {
 	left: 0;
 }
 #fg.fadein{
-	-webkit-animation: fadein 3s 1;
+	@include animation((fadein 3s 1));
 }
 
 #container {
@@ -76,65 +119,65 @@ div.bg {
 #ornithopter{
 	margin-top: 100px;
 	position: fixed;
-	-webkit-animation: flying-ornithopter 60s 1, flying-up-down 5s infinite;
+	@include animation((flying-ornithopter 60s 1, flying-up-down 5s infinite));
 }
 
 #family{
 	margin-top: 100px;
 	position: fixed;
-	-webkit-animation: flying-family 60s 1, flying-up-down 5s infinite linear;
+	@include animation((flying-family 60s 1, flying-up-down 5s infinite linear));
 }
 
 #castle{
 	position: fixed;
-	-webkit-transform: rotate(-5deg);
-	-webkit-animation: move 60s infinite;
+	@include rotate(-5deg);
+	@include animation((move 60s infinite));
 }
 
 #particles img{
 	margin-top: 80px;
 	margin-left: 100px;
 	position: fixed;
-	-webkit-animation: fall-down 60s infinite linear;
+	@include animation((fall-down 60s infinite linear));
 }
 #particles img:nth-child(1){
 	left: 40px;
 }
 #particles img:nth-child(2){
 	left: 45px;
-	-webkit-animation-delay: 3s;
+	@include animation-delay(3s);
 }
 #particles img:nth-child(3){
 	left: 38px;
-	-webkit-animation-delay: 7s;
+	@include animation-delay(7s);
 }
 #particles img:nth-child(4){
 	left: 65px;
-	-webkit-animation-delay: 11s;
+	@include animation-delay(11s);
 }
 #particles img:nth-child(5){
 	left: 34px;
-	-webkit-animation-delay: 16s;
+	@include animation-delay(16s);
 }
 #particles img:nth-child(6){
 	left: 55px;
-	-webkit-animation-delay: 19s;
+	@include animation-delay(19s);
 }
 #particles img:nth-child(7){
 	left: 38px;
-	-webkit-animation-delay: 23s;
+	@include animation-delay(23s);
 }
 #particles img:nth-child(8){
 	left: 60px;
-	-webkit-animation-delay: 27s;
+	@include animation-delay(27s);
 }
 #particles img:nth-child(9){
 	left: 45px;
-	-webkit-animation-delay: 31s;
+	@include animation-delay(31s);
 }
 #particles img:nth-child(10){
 	left: 30px;
-	-webkit-animation-delay: 36s;
+	@include animation-delay(36s);
 }
 
 #megaa{
@@ -142,14 +185,14 @@ div.bg {
 }
 
 #castle.falldown{
-	-webkit-animation: fall-down 60s 4s infinite linear;
+	@include animation((fall-down 60s 4s infinite linear));
 }
 #megaa.falldown{
-	-webkit-animation: fall-down 50s infinite linear;
+	@include animation((fall-down 50s infinite linear));
 }
 
 #effect{
-	-webkit-animation: blink 0.25s infinite;
+	@include animation((blink 0.25s infinite));
 }
 
 #wall{
@@ -162,7 +205,7 @@ div.bg {
 	margin-left: -240px;
 	margin-top: 10%;
 
-	-webkit-animation: move 20s infinite linear;
+	@include animation((move 20s infinite linear));
 }
 
 #text_finished{
@@ -212,8 +255,9 @@ div.bg {
 	text-align: right;
 }
 
+
 /** Animations **/
-@-webkit-keyframes fadein{
+@include keyframes(fadein){
 	from{
 		background: white;
 		width: 100%;
@@ -231,15 +275,15 @@ div.bg {
 		left: 0;
 	}
 }
-@-webkit-keyframes move{
+@include keyframes(move){
 	50%{
-		-webkit-transform:translate(0px, 20px);
+		@include translate(0px, 20px);
 	}
 	100%{
-		-webkit-transform:translate(0px, 0px);
+		@include translate(0px, 0px);
 	}
 }
-@-webkit-keyframes slide-first{
+@include keyframes(slide-first){
 	from{
 		left: 0%;
 	}
@@ -247,7 +291,7 @@ div.bg {
 		left: 115%;
 	}
 }
-@-webkit-keyframes slide-loop{
+@include keyframes(slide-loop){
 	from{
 		left: -115%;
 	}
@@ -255,25 +299,25 @@ div.bg {
 		left: 115%;
 	}
 }
-@-webkit-keyframes flying-ornithopter{
+@include keyframes(flying-ornithopter){
 	from{
 		left: 100%;
 	}
 	to{
 		left: 140px;
-		-webkit-transform: scale(0.3);
+		@include scale(0.3);
 	}
 }
-@-webkit-keyframes flying-family{
+@include keyframes(flying-family){
 	from{
 		left: 140px;
-		-webkit-transform: scale(0.3);
+		@include scale(0.3);
 	}
 	to{
 		left: 100%;
 	}
 }
-@-webkit-keyframes flying-up-down{
+@include keyframes(flying-up-down){
 	from{
 		top: -10px;
 	}
@@ -284,7 +328,7 @@ div.bg {
 		top: -10px;
 	}
 }
-@-webkit-keyframes fall-down{
+@include keyframes(fall-down){
 	from{
 		top: 100px;
 	}
@@ -293,10 +337,10 @@ div.bg {
 	}
 	to{
 		top: 1000px;
-		-webkit-transform: rotate(90deg);
+		@include rotate(90deg);
 	}
 }
-@-webkit-keyframes blink{
+@include keyframes(blink){
 	from{
 		opacity: 1;
 	}
