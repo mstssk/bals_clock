@@ -87,7 +87,7 @@ function bals(){
 
 	return "目がああああ";
 }
-window["bals"] = bals;
+window["bals"] = function(){return bals();};
 
 var timeoutID = setInterval(count,1000);
 
