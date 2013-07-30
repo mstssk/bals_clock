@@ -101,7 +101,7 @@ window.onload = function(){
 
 	// ornithopter
 	var ornithopter = getElemById("ornithopter");
-	if((balstime.getTime() - Date.now()) < 60000){
+	if((balstime.getTime() - (new Date().getTime())) < 60000){
 		remove(ornithopter);
 	}else{
 		setTimeout(function(){
