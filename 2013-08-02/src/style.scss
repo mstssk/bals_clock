@@ -252,6 +252,9 @@ div.bg {
 	text-align: right;
 }
 
+div.tweet {
+	margin: 5px;
+}
 
 /** Animations **/
 @include keyframes(fadein){
