@@ -17,4 +17,6 @@ echo "Copy image and html files."
 cp src/img/* deploy/img/
 cp src/bals.htm deploy/bals.htm
 
-echo "Done!"
+echo "Compiling Done!"
+
+sleep 1
