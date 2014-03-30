@@ -20,6 +20,7 @@ var num = 	["./img/num0.png"
 			,"./img/num7.png"
 			,"./img/num8.png"
 			,"./img/num9.png"];
+var h3 = getElemById("h3");
 var h2 = getElemById("h2");
 var h1 = getElemById("h1");
 var h0 = getElemById("h0");
@@ -27,7 +28,7 @@ var m1 = getElemById("m1");
 var m0 = getElemById("m0");
 var s1 = getElemById("s1");
 var s0 = getElemById("s0");
-var balstime = new Date("2013/08/02 23:21:53 +0900");
+var balstime = new Date("2015/10/17 23:21:52 +0900");
 function count(){
 	var remain = (balstime - new Date()) / 1000;
 	if(remain < 0){
@@ -44,7 +45,8 @@ function count(){
 		var tmp = remain % 3600;
 		var m = tmp / 60 | 0;
 		var s = tmp % 60 | 0;
-		h2.src = num[h / 100 % 100 | 0];
+		h3.src = num[h / 1000 % 10 | 0];
+		h2.src = num[h / 100 % 10 | 0];
 		h1.src = num[h / 10 % 10| 0];
 		h0.src = num[h % 10];
 		m1.src = num[m / 10 | 0];
