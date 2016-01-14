@@ -1,2 +1,3 @@
 .sass-cache/
 deploy/
+.DS_Store
