@@ -29,14 +29,17 @@ sed -i -e '/\.\/script\.js/d' deploy/bals.htm
 echo "Replace image files path in deployed codes..."
 cat $map | while read pair
 do
-	orig=`echo $pair | sed -E -e "s/\s.*//"`
-	path=`echo $pair | sed -E -e "s/.+\s//"`
-	orig=`esc "./img/$orig"`
-	path=`esc "$path"`
+	pair=(`echo $pair`)
+	orig=${pair[0]}
+	path=${pair[1]}
+	orig="./img/$orig"
+	path="$path"
+	# echo $orig
+	# echo $path
 	# echo "sed s/$orig/$path/g"
-	sed -i -e s/$orig/$path/g ./deploy/bals.htm
-	sed -i -e s/$orig/$path/g ./deploy/script.js
-	sed -i -e s/$orig/$path/g ./deploy/style.css
+	sed -i -e s#$orig#$path#g ./deploy/bals.htm
+	sed -i -e s#$orig#$path#g ./deploy/script.js
+	sed -i -e s#$orig#$path#g ./deploy/style.css
 done
 
 echo "Replace Done!"

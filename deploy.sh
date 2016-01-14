@@ -11,7 +11,8 @@ echo "Compile 'css'."
 compass compile src/style.scss
 
 echo "Compress 'js'."
-java -jar lib/closure-compiler/compiler.jar --js src/script.js --js_output_file deploy/script.js
+# java -jar lib/closure-compiler/compiler.jar --js src/script.js --js_output_file deploy/script.js
+cp src/script.js deploy/script.js
 
 echo "Copy image and html files."
 cp src/img/* deploy/img/
