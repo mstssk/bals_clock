@@ -27,7 +27,7 @@ var m1 = getElemById("m1");
 var m0 = getElemById("m0");
 var s1 = getElemById("s1");
 var s0 = getElemById("s0");
-var balstime = new Date("2013/08/02 23:21:53 +0900");
+var balstime = new Date("2016/01/15 23:21:52 +0900");
 function count(){
 	var remain = (balstime - new Date()) / 1000;
 	if(remain < 0){
